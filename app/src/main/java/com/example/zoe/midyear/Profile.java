@@ -1,5 +1,7 @@
 package com.example.zoe.midyear;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Calendar;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener{
 
@@ -31,7 +35,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser()==null){
+        if (firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, StartActivity.class));
         }
@@ -55,6 +59,21 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
 
         toChat = findViewById(R.id.toChat);
         toChat.setOnClickListener(this);
+
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, 07);
+                calendar.set(Calendar.MINUTE, 00);
+                calendar.set(Calendar.SECOND, 30);
+                Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            }
+        });
     }
 
     @Override
