@@ -22,7 +22,7 @@ public class EventInfo {
             HttpURLConnection connection =
                     (HttpURLConnection) url.openConnection();
 
-            //connection.addRequestProperty("x-api-key", OPEN_WEATHER_MAP_API);
+            connection.addRequestProperty("x-api-key", "ZQwYe9qy3dtSYvVM");
 
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(connection.getInputStream()));
@@ -38,22 +38,22 @@ public class EventInfo {
             // This value will be 404 if the request was not
             // successful
             if (data.getInt("cod") == 404) {
-                artist = "Unavailable";
-                venue = "Unavailable";
-                date = "Unavailable";
-                time = "Unavailable";
-                link = "Unavailable";
-                location = "Unavailable";
+                artist = "Unavailable1";
+                venue = "Unavailable1";
+                date = "Unavailable1";
+                time = "Unavailable1";
+                link = "Unavailable1";
+                location = "Unavailable1";
             }
 
             setAttributes(data);
         } catch (Exception e) {
-            artist = "Unavailable";
-            venue = "Unavailable";
-            date = "Unavailable";
-            time = "Unavailable";
-            link = "Unavailable";
-            location = "Unavailable";
+            artist = "Unavailable2";
+            venue = "Unavailable2";
+            date = "Unavailable2";
+            time = "Unavailable2";
+            link = "Unavailable2";
+            location = "Unavailable2";
         }
     }
 
@@ -73,12 +73,12 @@ public class EventInfo {
             link = event.getString("uri");
         }
         catch(JSONException j){
-            artist = "Unavailable";
-            venue = "Unavailable";
-            date = "Unavailable";
-            time = "Unavailable";
-            link = "Unavailable";
-            location = "Unavailable";
+            artist = "Unavailable3";
+            venue = "Unavailable3";
+            date = "Unavailable3";
+            time = "Unavailable3";
+            link = "Unavailable3";
+            location = "Unavailable3";
         }
 
     }
