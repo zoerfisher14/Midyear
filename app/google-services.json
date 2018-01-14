@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "990923958061",
+    "firebase_url": "https://midyear-a6e42.firebaseio.com",
+    "project_id": "midyear-a6e42",
+    "storage_bucket": "midyear-a6e42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990923958061:android:d39cc02615592ac8",
+        "android_client_info": {
+          "package_name": "com.example.zoe.midyear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990923958061-sqlpn57qeu1h53s0pgsuna217gu2gcvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlTUm3Y6tLSQ4zRaWe28Ih8EueLwT2sBU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
