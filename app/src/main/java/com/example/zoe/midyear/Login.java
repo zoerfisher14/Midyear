@@ -27,10 +27,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        login = findViewById(R.id.loginForReal);
+        login = (Button) findViewById(R.id.loginForReal);
         login.setOnClickListener(this);
-        getEmail = findViewById(R.id.getCurrentEmail);
-        getPassword = findViewById(R.id.getCurrentPassword);
+        getEmail = (EditText) findViewById(R.id.getCurrentEmail);
+        getPassword = (EditText) findViewById(R.id.getCurrentPassword);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
