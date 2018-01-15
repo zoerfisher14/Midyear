@@ -30,9 +30,10 @@ public class APIRequest {
 
     }
 
-    public APIRequest(String zip, String artist_name){
+    public APIRequest(String zip, String artist_name, Context context){
 
         this.artist_name = artist_name;
+        this.context = context;
 
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");

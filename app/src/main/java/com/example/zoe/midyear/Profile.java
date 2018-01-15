@@ -43,21 +43,21 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
         user = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        getName = findViewById(R.id.getName);
-        getPhone = findViewById(R.id.getPhoneNumber);
-        getLocation = findViewById(R.id.getLocation);
-        getArtist = findViewById(R.id.getArtist);
+        getName = (EditText) findViewById(R.id.getName);
+        getPhone = (EditText) findViewById(R.id.getPhoneNumber);
+        getLocation = (EditText) findViewById(R.id.getLocation);
+        getArtist = (EditText) findViewById(R.id.getArtist);
 
-        save = findViewById(R.id.save);
+        save = (Button) findViewById(R.id.save);
         save.setOnClickListener(this);
 
-        logout = findViewById(R.id.logout);
+        logout = (Button) findViewById(R.id.logout);
         logout.setOnClickListener(this);
 
-        toEvents = findViewById(R.id.toFindEvents);
+        toEvents = (Button) findViewById(R.id.toFindEvents);
         toEvents.setOnClickListener(this);
 
-        toChat = findViewById(R.id.toChat);
+        toChat = (Button) findViewById(R.id.toChat);
         toChat.setOnClickListener(this);
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {

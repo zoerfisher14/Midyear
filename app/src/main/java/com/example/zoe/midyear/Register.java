@@ -29,10 +29,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        getEmail = findViewById(R.id.email);
-        getPassword = findViewById(R.id.password);
+        getEmail = (EditText) findViewById(R.id.email);
+        getPassword = (EditText) findViewById(R.id.password);
 
-        register = findViewById(R.id.registerForReal);
+        register = (Button) findViewById(R.id.registerForReal);
         register.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
