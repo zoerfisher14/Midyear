@@ -29,6 +29,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
 
 public class Events extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,6 +47,8 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
     private TextView event;
     private EditText num;
     private Button toProfile, toChat, findEvent, toSongkick;
+
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
 
 
     @Override
@@ -145,8 +153,37 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
                     Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-
     }
+
+    /*public void newGroupChat(){
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put(e.getDisplayName(),"");
+
+        root.updateChildren(map);
+
+        root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Set<String> set = new HashSet<String>();
+                Iterator i = dataSnapshot.getChildren().iterator();
+
+                while (i.hasNext()){
+                    set.add(((DataSnapshot)i.next()).getKey());
+                }
+
+                GroupChatActivity.getListOfRooms().clear();
+                GroupChatActivity.getListOfRooms().addAll(set);
+
+                GroupChatActivity.getArrayAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+    }*/
 
 
     public class JSONTask extends AsyncTask<String, String, String> {
@@ -186,7 +223,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
                     e.printStackTrace();
                 }
             }
-            return null;
+            return getString(R.string.defaultJson);
         }
 
         @Override
@@ -197,6 +234,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
                 e1.printStackTrace();
             }
             event.setText(e.getDisplayName());
+            //newGroupChat();
         }
     }
 }
