@@ -22,7 +22,7 @@ public class APIRequest {
         this.context = context;
 
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         min_date = df.format(c.getTime());
         max_date = nextMonth(min_date);
 
@@ -36,7 +36,7 @@ public class APIRequest {
         this.context = context;
 
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         min_date = df.format(c.getTime());
         max_date = nextMonth(min_date);
 
@@ -45,18 +45,21 @@ public class APIRequest {
     }
 
     private String nextMonth(String min_date){
-        int month = Integer.parseInt(min_date.substring(5,7));
-        if(month == 12){
-            month = 0;
-            int year = Integer.parseInt(min_date.substring(0,4))+1;
-            min_date = year + min_date.substring(4);
+        String year = min_date.substring(0,4);
+        String month = min_date.substring(5,7);
+        String day = min_date.substring(8);
+
+        if(Integer.parseInt(month)==12){
+            day="31";
         }
-        month++;
-        String m = month+"";
-        if(m.length()==1){
-            m = "0"+m;
+        else{
+            int m = Integer.parseInt(month)+1;
+            month = m+"";
         }
-        return min_date.substring(0,5)+m+min_date.substring(8);
+        if(month.length()==1){
+            month = 0+month;
+        }
+        return year+"-"+month+"-"+day;
     }
 
     private void setLocation(String z){

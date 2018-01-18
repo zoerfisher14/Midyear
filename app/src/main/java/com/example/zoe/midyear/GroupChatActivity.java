@@ -36,4 +36,12 @@ public class GroupChatActivity extends AppCompatActivity {
             }
         });
     }
+
+    public ArrayList<String> getListOfRooms(){
+        return listOfRooms;
+    }
+
+    public ArrayAdapter<String> getArrayAdapter(){
+        return arrayAdapter;
+    }
 }

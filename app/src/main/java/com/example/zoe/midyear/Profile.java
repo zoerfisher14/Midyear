@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,6 +24,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
     private Button logout, save, toEvents, toChat;
+    private RadioButton r;
     private DatabaseReference databaseReference;
     private EditText getName, getPhone, getLocation, getArtist;
     private FirebaseUser user;
@@ -48,6 +50,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
         getLocation = (EditText) findViewById(R.id.getLocation);
         getArtist = (EditText) findViewById(R.id.getArtist);
 
+        r = (RadioButton) findViewById(R.id.notifications);
+        r.setOnClickListener(this);
+
         save = (Button) findViewById(R.id.save);
         save.setOnClickListener(this);
 
@@ -60,20 +65,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
         toChat = (Button) findViewById(R.id.toChat);
         toChat.setOnClickListener(this);
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY, 07);
-                calendar.set(Calendar.MINUTE, 00);
-                calendar.set(Calendar.SECOND, 30);
-                Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-            }
-        });
     }
 
     @Override
@@ -118,6 +109,17 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
         databaseReference.child(user.getUid()).setValue(userInfo);
     }
 
+    private void setUpNotifications(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 07);
+        calendar.set(Calendar.MINUTE, 00);
+        calendar.set(Calendar.SECOND, 30);
+        Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+    }
+
     @Override
     public void onClick(View view) {
         switch(view.getId()){
@@ -134,6 +136,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
                 break;
             case R.id.toChat:
                 startActivity(new Intent(this, Chat.class));
+                break;
+            case R.id.notifications:
+                setUpNotifications();
                 break;
         }
 
