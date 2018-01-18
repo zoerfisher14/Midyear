@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,7 +28,8 @@ import java.util.Map;
 public class Chat extends AppCompatActivity {
 
     private FloatingActionButton send;
-    private TextView listOfMessages;
+    private Button back;
+    private TextView listOfMessages, titleb;
     private EditText input;
     private String roomName, tempKey, chatUser, chatMsg;
     private DatabaseReference root;
@@ -39,10 +41,12 @@ public class Chat extends AppCompatActivity {
 
         listOfMessages = (TextView)findViewById(R.id.list_of_messages);
         send = (FloatingActionButton)findViewById(R.id.fab);
+        back = (Button)findViewById(R.id.backToChat);
         input = (EditText)findViewById(R.id.input);
+        titleb = (TextView)findViewById(R.id.titleBox);
         roomName = getIntent().getExtras().get("name").toString();
 
-        setTitle("Room - " + roomName);
+        titleb.setText("Room - " + roomName);
 
         root = FirebaseDatabase.getInstance().getReference().getRoot().child(roomName);
 
@@ -96,5 +100,10 @@ public class Chat extends AppCompatActivity {
 
             listOfMessages.append(chatUser +" : "+chatMsg +" \n");
         }
+    }
+
+    public void toGroupChatPage(View view){
+        Intent i = new Intent(this, GroupChatActivity.class);
+        startActivity(i);
     }
 }

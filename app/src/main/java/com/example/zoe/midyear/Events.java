@@ -100,7 +100,6 @@ public class Events extends AppCompatActivity implements View.OnClickListener{
                 break;
         }
     }
-
     public void getNewEvent(){
         APIRequest apiRequest;
         if(u.artist==null){
