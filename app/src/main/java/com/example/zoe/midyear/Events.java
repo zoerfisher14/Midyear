@@ -1,8 +1,13 @@
 package com.example.zoe.midyear;
 
+import android.*;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -50,7 +55,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
 
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
 
-    private static final int REQUEST_CODE = 1;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
 
 
     @Override
@@ -134,19 +139,22 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
 
     public void getNewEvent() {
         APIRequest apiRequest;
-        if (u.artist == null) {
-            apiRequest = new APIRequest(u.location, getApplicationContext());
-        } else {
+        try{
             apiRequest = new APIRequest(u.location, u.artist, getApplicationContext());
+        }catch(NullPointerException n){
+            apiRequest = new APIRequest(u.location, getApplicationContext());
         }
-
         new JSONTask().execute(apiRequest.APIRequestURL());
 
     }
 
     public void sendSMS(){
-        requestPermissions(/*Events.class,*/ new String[]{android.Manifest.permission.SEND_SMS}, REQUEST_CODE);
-
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                android.Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(Events.this,
+                        new String[]{Manifest.permission.SEND_SMS},
+                        MY_PERMISSIONS_REQUEST_SEND_SMS);}
         String message = u.name + " though you might be interested in going to "+e.getDisplayName()+" with them.  Here is a link for more information! "+e.getLink();
         String phoneNumber = num.getText().toString();
 
@@ -156,6 +164,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(getApplicationContext(), "SMS sent.",
                     Toast.LENGTH_LONG).show();
         } catch (Exception e) {
+            e.printStackTrace();
             Toast.makeText(getApplicationContext(),
                     "Sending SMS failed.",
                     Toast.LENGTH_LONG).show();
