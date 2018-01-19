@@ -26,13 +26,17 @@ public class EventInfo {
     private JSONObject parentObject;
     private String displayName, link;
 
-    public EventInfo(String s) throws JSONException {
+    public EventInfo(String s) {
+        try{
+            parentObject = new JSONObject(s);
+            link = parentObject.getJSONObject("resultsPage").getJSONObject("results").getJSONArray("event").getJSONObject(0).getString("uri");
+            displayName = parentObject.getJSONObject("resultsPage").getJSONObject("results").getJSONArray("event").getJSONObject(0).getString("displayName");
+        } catch(JSONException er){
+            er.printStackTrace();
+            link = "unavailable";
+            displayName = "unavailable";
+        }
 
-        parentObject = new JSONObject(s);
-
-        link = parentObject.getJSONObject("resultsPage").getJSONObject("results").getJSONObject("event").getString("uri");
-
-        displayName = parentObject.getJSONObject("resultsPage").getJSONObject("results").getJSONObject("event").getString("displayName");
 
     }
 
