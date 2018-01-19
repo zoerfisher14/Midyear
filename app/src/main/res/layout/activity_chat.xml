@@ -45,8 +45,7 @@
         android:id="@+id/titleBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/scrollView"
-        android:layout_toRightOf="@id/backToChat" />
+        android:layout_above="@id/scrollView" />
 
     <ScrollView
         android:layout_width="wrap_content"
