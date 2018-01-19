@@ -135,7 +135,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener{
                 startActivity(new Intent(this, Events.class));
                 break;
             case R.id.toChat:
-                startActivity(new Intent(this, Chat.class));
+                startActivity(new Intent(this, GroupChatActivity.class));
                 break;
             case R.id.notifications:
                 setUpNotifications();

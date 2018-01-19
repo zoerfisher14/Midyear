@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class Chat extends AppCompatActivity {
 
-    private FloatingActionButton send;
+    private Button send;
     private Button back;
     private TextView listOfMessages, titleb;
     private EditText input;
@@ -40,7 +40,7 @@ public class Chat extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         listOfMessages = (TextView)findViewById(R.id.list_of_messages);
-        send = (FloatingActionButton)findViewById(R.id.fab);
+        send = (Button)findViewById(R.id.fab);
         back = (Button)findViewById(R.id.backToChat);
         input = (EditText)findViewById(R.id.input);
         titleb = (TextView)findViewById(R.id.titleBox);

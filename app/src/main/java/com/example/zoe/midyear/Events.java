@@ -53,7 +53,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
     private EditText num;
     private Button toProfile, toChat, findEvent, toSongkick, send;
 
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
+    //private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
 
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
 
@@ -116,7 +116,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(this, Profile.class));
                 break;
             case R.id.toChat1:
-                Intent intent = new Intent(getApplicationContext(),Chat.class);
+                Intent intent = new Intent(getApplicationContext(),GroupChatActivity.class);
                 intent.putExtra("name",(e.getDisplayName()));
                 startActivity(intent);
                 break;
@@ -145,7 +145,6 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
             apiRequest = new APIRequest(u.location, getApplicationContext());
         }
         new JSONTask().execute(apiRequest.APIRequestURL());
-
     }
 
     public void sendSMS(){
@@ -172,7 +171,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void newGroupChat() {
+    /*public void newGroupChat() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put(e.getDisplayName(), "");
 
@@ -200,7 +199,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
-    }
+    }*/
 
 
         public class JSONTask extends AsyncTask<String, String, String> {
@@ -248,7 +247,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
                 String def = "{\"resultsPage\":{\"page\":1,\"totalEntries\":2,\"perPage\":50,\"results\":{\"event\":[{\"displayName\":\"VampireWeekendatO2AcademyBrixton(February16,2010)\",\"type\":\"Concert\",\"uri\":\"http://www.songkick.com/concerts/3037536-vampire-weekend-at-o2-academy-brixton?utm_medium=partner&amp;utm_source=PARTNER_ID\",\"venue\":{\"lng\":-0.1187418,\"displayName\":\"O2AcademyBrixton\",\"lat\":51.4681089,\"id\":17522},\"location\":{\"lng\":-0.1187418,\"city\":\"London,UK\",\"lat\":51.4681089},\"start\":{\"time\":\"19:30:00\",\"date\":\"2010-02-16\",\"datetime\":\"2010-02-16T19:30:00+0000\"},\"performance\":[{\"artist\":{\"uri\":\"http://www.songkick.com/artists/288696-vampire-weekend\",\"displayName\":\"VampireWeekend\",\"id\":288696,\"identifier\":[{\"mbid\":\"af37c51c-0790-4a29-b995-456f98a6b8c9\"}]},\"displayName\":\"VampireWeekend\",\"billingIndex\":1,\"id\":5380281,\"billing\":\"headline\"}],\"id\":3037536},{\"displayName\":\"VampireWeekendatO2AcademyBrixton(February17,2010)\",\"type\":\"Concert\",\"uri\":\"http://www.songkick.com/concerts/3078766-vampire-weekend-at-o2-academy-brixton?utm_medium=partner&amp;utm_source=PARTNER_ID\",\"venue\":{\"lng\":-0.1187418,\"displayName\":\"O2AcademyBrixton\",\"lat\":51.4681089,\"id\":17522},\"location\":{\"lng\":-0.1187418,\"city\":\"London,UK\",\"lat\":51.4681089},\"start\":{\"time\":\"19:30:00\",\"date\":\"2010-02-17\",\"datetime\":\"2010-02-17T19:30:00+0000\"},\"performance\":[{\"artist\":{\"uri\":\"http://www.songkick.com/artists/288696-vampire-weekend\",\"displayName\":\"VampireWeekend\",\"id\":288696,\"identifier\":[{\"mbid\":\"af37c51c-0790-4a29-b995-456f98a6b8c9\"}]},\"displayName\":\"VampireWeekend\",\"billingIndex\":1,\"id\":5468321,\"billing\":\"headline\"}],\"id\":3078766}]}}}";
                 e = new EventInfo(def);
                 event.setText(e.getDisplayName());
-            newGroupChat();
+                //newGroupChat();
         }
     }
 }
