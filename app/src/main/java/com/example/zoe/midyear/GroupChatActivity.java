@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class GroupChatActivity extends AppCompatActivity {
 
-    private ArrayList<String> listOfRooms = new ArrayList();
-    private ArrayAdapter<String> arrayAdapter;
+    public static ArrayList<String> listOfRooms = new ArrayList();
+    public static ArrayAdapter<String> arrayAdapter;
     private ListView listView;
 
     @Override
@@ -37,11 +37,11 @@ public class GroupChatActivity extends AppCompatActivity {
         });
     }
 
-    public ArrayList<String> getListOfRooms(){
+    public static ArrayList<String> getListOfRooms(){
         return listOfRooms;
     }
 
-    public ArrayAdapter<String> getArrayAdapter(){
+    public static ArrayAdapter<String> getArrayAdapter(){
         return arrayAdapter;
     }
 }
