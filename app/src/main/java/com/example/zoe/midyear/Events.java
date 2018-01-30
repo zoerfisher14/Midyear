@@ -240,7 +240,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
                     e.printStackTrace();
                 }
             }
-            return getString(R.string.defaultJson);
+            return null;
         }
 
         @Override
