@@ -53,7 +53,7 @@ public class APIRequest {
             day="31";
         }
         else{
-            int m = Integer.parseInt(month)+1;
+            int m = Integer.parseInt(month)+3;
             month = m+"";
         }
         if(month.length()==1){

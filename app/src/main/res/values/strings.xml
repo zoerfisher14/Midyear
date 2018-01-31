@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Midyear</string>
-    <string name="apiRequestArtist">http://api.songkick.com/api/3.0/events.json?apikey=O7j36MKSLQoyaAON&amp;artist_name=%s&amp;location=&lt;%s&lt;,&lt;%s&gt;&amp;min_date=%s&amp;max_date=%s</string>
-    <string name="apiRequest">http://api.songkick.com/api/3.0/events.json?apikey=O7j36MKSLQoyaAON&amp;location=&lt;%s&gt;,&lt;%s&gt;&amp;min_date=%s&amp;max_date=%s</string>
+    <string name="apiRequestArtist">http://api.songkick.com/api/3.0/events.json?apikey=O7j36MKSLQoyaAON&amp;artist_name=%s;&amp;location=geo:%s,%s;&amp;min_date=%s;&amp;max_date=%s;</string>
+    <string name="apiRequest">http://api.songkick.com/api/3.0/events.json?apikey=O7j36MKSLQoyaAON;&amp;location=geo:%s,%s;&amp;min_date=%s;&amp;max_date=%s;</string>
 </resources>
