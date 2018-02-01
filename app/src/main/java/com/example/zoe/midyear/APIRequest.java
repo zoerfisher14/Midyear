@@ -3,7 +3,9 @@ package com.example.zoe.midyear;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.util.Log;
 
+import java.io.Console;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -50,14 +52,17 @@ public class APIRequest {
         String day = min_date.substring(8);
 
         if(Integer.parseInt(month)==12){
-            day="31";
+            month = 1+"";
         }
         else{
-            int m = Integer.parseInt(month)+3;
+            int m = Integer.parseInt(month)+1;
             month = m+"";
         }
         if(month.length()==1){
             month = 0+month;
+        }
+        if(Integer.parseInt(day)>28){
+            day = 28+"";
         }
         return year+"-"+month+"-"+day;
     }
@@ -78,12 +83,15 @@ public class APIRequest {
     }
 
     public String APIRequestURL(){
+        String s;
         if(artist_name!=null){
-            return context.getString(R.string.apiRequestArtist, artist_name, lat, lon, min_date, max_date);
+            s = context.getString(R.string.apiRequestArtist, artist_name, lat, lon, min_date, max_date);
         }
         else{
-            return context.getString(R.string.apiRequest, lat, lon, min_date, max_date);
+            s = context.getString(R.string.apiRequest, lat, lon, min_date, max_date);
         }
+        Log.i("API URL", s);
+        return s;
     }
 
 }

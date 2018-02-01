@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.EventLog;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,6 +17,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 
 /**
  * Created by Zoe on 1/13/18.
@@ -29,8 +31,11 @@ public class EventInfo {
     public EventInfo(String s) {
         try{
             parentObject = new JSONObject(s);
-            link = parentObject.getJSONObject("resultsPage").getJSONObject("results").getJSONArray("event").getJSONObject(0).getString("uri");
-            displayName = parentObject.getJSONObject("resultsPage").getJSONObject("results").getJSONArray("event").getJSONObject(0).getString("displayName");
+            JSONArray events = parentObject.getJSONObject("resultsPage").getJSONObject("results").getJSONArray("event");
+            Random r = new Random();
+            int i = r.nextInt(events.length());
+            link = events.getJSONObject(i).getString("uri");
+            displayName = events.getJSONObject(i).getString("displayName");
         } catch(JSONException er){
             er.printStackTrace();
             link = "unavailable";
